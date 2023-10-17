@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:56:57 by bloisel           #+#    #+#             */
-/*   Updated: 2023/10/17 17:53:53 by bloisel          ###   ########.fr       */
+/*   Updated: 2023/10/17 22:07:00 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void *is_sleeping(t_philo *info)
 {
 	if (check_death(info) == 0)
 		print_val("is sleeping" , info);
-	ft_usleep(info->time_to_sleep * 1000);
+	ft_usleep(info->time_to_sleep * 1000 , info);
 	if (check_death(info) == 0)
 		print_val("is thinking" , info);
 	return NULL;
@@ -35,32 +35,36 @@ void *is_eating(t_philo *info)
 {
 		if (check_death(info) == 0)
 			print_val("is eating", info);
-		info->last_eat[0] = timeval();
+		//info->last_eat[0] = timeval();
+		ft_usleep(info->time_to_eat * 1000 , info);	
 		info->count++;
-		ft_usleep(info->time_to_eat * 1000);
+		// is_sleeping(info);
+		//ft_usleep(info->time_to_eat * 1000);
 	return NULL;
 }
 
 void *fork_test(t_philo *info)
 {
-		if (info->nb_philo == 1)
+		pthread_mutex_lock(&info->fork[info->left_fork]);
+		if (check_death(info) == 0)
 		{
-			ft_usleep(info->time_to_eat * 1000);
-			return NULL;	
+			print_val("has taken a fork" , info);		
+		}
+		while (info->nb_philo == 1)
+		{
+			if (check_death(info) == 1)
+					return NULL;
 		}
 		pthread_mutex_lock(&info->fork[info->right_fork]);
 		if (check_death(info) == 0)
 		{
-			print_val("has taken left fork" , info);		
-		}
-		pthread_mutex_lock(&info->fork[info->left_fork]);
-		if (check_death(info) == 0)
-		{
-			print_val("has taken right fork" , info);	
+			print_val("has taken a fork" , info);	
 		}
 		is_eating(info);
-		pthread_mutex_unlock(&info->fork[info->right_fork]);
 		pthread_mutex_unlock(&info->fork[info->left_fork]);
+		pthread_mutex_unlock(&info->fork[info->right_fork]);
+		info->last_eat[0] = timeval();
+		// is_sleeping(info);
 		return NULL;
 }
 
@@ -69,12 +73,10 @@ void *thread_routine(void *philo_struct)
 	t_philo *phi;
 	
 	phi = ((t_philo *)philo_struct);
-	if (phi->id % 2 == 0) // anciemment phinb
-		ft_usleep (phi->time_to_eat * 1000);
+	if (phi->id % 2 == 0) 
+		ft_usleep (phi->time_to_eat * 1000 , phi);
 	while (check_death(phi) == 0)
 	{
-		printf("id philo = [%d] , left fork  = [%d]\n",phi->id , phi->left_fork);
-		printf("id philo = [%d] , right fork = [%d]\n",phi->id ,  phi->right_fork);
 		fork_test(phi);
 		is_sleeping(phi);
 		if (phi->count == phi->nb_m_eat && phi->nb_philo != 1)

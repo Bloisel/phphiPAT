@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:40:54 by bloisel           #+#    #+#             */
-/*   Updated: 2023/10/17 20:30:24 by bloisel          ###   ########.fr       */
+/*   Updated: 2023/10/17 22:02:32 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,18 @@ long long timeval()
     return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void	ft_usleep(long long milis)
+void	ft_usleep(long long milis , t_philo *info)
 {
 	long long	time;
 
 	time = timeval() * 1000;
 	while (1)
 	{
+		if (check_death(info) == 1)
+			break ;
 		usleep(50);
 		if (timeval() * 1000 - time >= milis)
-			break;
+			break ;
 	}
 }
 
@@ -80,5 +82,4 @@ long	ms;
 if (ms >= 0 && (phil->stop[0] == 0))
 	printf("%ld, %d, %s\n", ms, phil->id, str);
 // pthread_mutex_unlock(&phil->glob[0]);
-// printf("ok\n");
 }

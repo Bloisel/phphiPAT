@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:35:20 by bloisel           #+#    #+#             */
-/*   Updated: 2023/10/16 04:05:16 by bloisel          ###   ########.fr       */
+/*   Updated: 2023/10/17 22:01:15 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct t_info
 }   t_inf;
 
 long long timeval();
-void	ft_usleep(long long milis);
+void	ft_usleep(long long milis , t_philo *info);
 void init_phiphi(t_inf *info);
 void init_philo(t_inf *info);
 void init_mutex(t_inf *info);
