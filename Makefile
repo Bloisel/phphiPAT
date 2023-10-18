@@ -6,7 +6,7 @@
 #    By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/27 18:33:37 by bloisel           #+#    #+#              #
-#    Updated: 2023/10/16 00:42:39 by bloisel          ###   ########.fr        #
+#    Updated: 2023/10/18 03:29:39 by bloisel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ SRCS = srcs/main.c \
 			srcs/init_philo.c \
 			srcs/init_struct.c \
 			srcs/routine.c \
+			srcs/free.c \
+			srcs/after_routine.c \
 			srcs/init_thread.c \
 			srcs/utils.c 
 

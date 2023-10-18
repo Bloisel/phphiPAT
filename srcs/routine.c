@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:56:57 by bloisel           #+#    #+#             */
-/*   Updated: 2023/10/17 22:07:00 by bloisel          ###   ########.fr       */
+/*   Updated: 2023/10/18 03:05:18 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,8 @@ void *is_eating(t_philo *info)
 {
 		if (check_death(info) == 0)
 			print_val("is eating", info);
-		//info->last_eat[0] = timeval();
-		ft_usleep(info->time_to_eat * 1000 , info);	
-		info->count++;
-		// is_sleeping(info);
-		//ft_usleep(info->time_to_eat * 1000);
+	info->count++;
+	ft_usleep(info->time_to_eat * 1000 , info);	
 	return NULL;
 }
 
@@ -64,7 +61,6 @@ void *fork_test(t_philo *info)
 		pthread_mutex_unlock(&info->fork[info->left_fork]);
 		pthread_mutex_unlock(&info->fork[info->right_fork]);
 		info->last_eat[0] = timeval();
-		// is_sleeping(info);
 		return NULL;
 }
 
@@ -77,14 +73,14 @@ void *thread_routine(void *philo_struct)
 		ft_usleep (phi->time_to_eat * 1000 , phi);
 	while (check_death(phi) == 0)
 	{
-		fork_test(phi);
-		is_sleeping(phi);
-		if (phi->count == phi->nb_m_eat && phi->nb_philo != 1)
-		{
-				if (++phi->phi_a_eat == phi->nb_philo)
-					phi->stop[0] = 1;
-				return NULL;
-			}
-		}
+	fork_test(phi);
+	is_sleeping(phi);
+	if (phi->count == phi->nb_m_eat && phi->nb_philo != 1)
+	{
+		phi->compteur[0]++;
+		printf("compteur %d\n", phi->compteur[0]);
+		return NULL;
+	}
+	}
 	return NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:35:20 by bloisel           #+#    #+#             */
-/*   Updated: 2023/10/17 22:01:15 by bloisel          ###   ########.fr       */
+/*   Updated: 2023/10/18 03:29:27 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ typedef struct t_phil
 	int *stop; 
 
 	int id;
+	
 
+	int *compteur;
 	int nb_m_eat;
 	int phi_a_eat;
 	int count;
@@ -57,6 +59,7 @@ typedef struct t_info
 
 	int nb_m_eat;
 
+	int *compteur;
 	long long time_to_start;
 	int *stop;
 
@@ -80,5 +83,7 @@ int	check_ar(char **argv);
 void init_thread(t_inf *info);
 int check_death(t_philo *data);
 void	print_val(char *str, t_philo *info);
+int	free_resources(t_inf *inf);
+int after_routine(t_inf *info);
 
 #endif

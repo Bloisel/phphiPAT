@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:56:46 by bloisel           #+#    #+#             */
-/*   Updated: 2023/10/17 21:39:45 by bloisel          ###   ########.fr       */
+/*   Updated: 2023/10/18 00:57:44 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void init_phiphi(t_inf *info)
 		info->phiphi[i]->time_to_start = info->time_to_start;
 		info->phiphi[i]->last_eat[0] = info->time_to_start;
 		info->phiphi[i]->stop = info->stop;
-		info->phiphi[i]->print = info->print; 
+		info->phiphi[i]->compteur = info->compteur;
+		info->phiphi[i]->print = info->print;
 		info->phiphi[i]->glob = info->glob;
 		if (info->phiphi[i]->id == info->nb_philo)
 			info->phiphi[i]->right_fork = 0;

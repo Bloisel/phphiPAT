@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:56:41 by bloisel           #+#    #+#             */
-/*   Updated: 2023/10/16 03:08:00 by bloisel          ###   ########.fr       */
+/*   Updated: 2023/10/18 00:53:08 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ void	init_struct(t_inf *info, char **argv)
 	info->phi_a_eat = 0;
 	if (argv[5] == 0)
 		info->nb_m_eat = 0;
+	info->compteur = malloc(sizeof(int));
 	info->stop = malloc(sizeof(int));
 	info->fork = malloc(sizeof(pthread_mutex_t) * info->nb_philo);
 	info->print = malloc(sizeof(pthread_mutex_t));
 	info->glob = malloc(sizeof(pthread_mutex_t));
+	info->compteur[0] = 0;
 	info->stop[0] = 0;
 	init_mutex(info);
 }
