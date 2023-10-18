@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:55:48 by bloisel           #+#    #+#             */
-/*   Updated: 2023/10/18 03:45:06 by bloisel          ###   ########.fr       */
+/*   Updated: 2023/10/18 04:43:04 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void init_thread(t_inf *info)
 	pthread_t t[info->nb_philo];
 	while (i < info->nb_philo)
 	{
-		pthread_create(&t[i] , NULL , thread_routine , info->phiphi[i]);  
+		if (pthread_create(&t[i] , NULL , thread_routine , info->phiphi[i]) != 0)
+			return ;  
 		i++;
 		usleep(50);
 	}
@@ -35,11 +36,12 @@ void init_thread(t_inf *info)
 	{
 			while (++i < info->nb_philo)
 			{
-					if (info->time_to_die <= (timeval() - info->phiphi[i]->last_eat[0]))
+					if (info->compteur[0] == info->nb_philo)
+						return ;
+					if ((info->stop[0] != 1) && (info->time_to_die <= (timeval() - info->phiphi[i]->last_eat[0])))
 					{
 						info->phiphi[i]->stop[0] = 1;
 						print_val("is dead" , info->phiphi[i]);
-						return ; 
 					}
 			}
 			i = -1;

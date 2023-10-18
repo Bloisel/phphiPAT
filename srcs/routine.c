@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:56:57 by bloisel           #+#    #+#             */
-/*   Updated: 2023/10/18 04:24:16 by bloisel          ###   ########.fr       */
+/*   Updated: 2023/10/18 04:54:35 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ void *thread_routine(void *philo_struct)
 	phi = ((t_philo *)philo_struct);
 	if (phi->id % 2 == 0) 
 		ft_usleep (phi->time_to_eat * 1000 , phi);
-	while (check_death(phi) == 0)
+	while (6)
 	{
 		fork_test(phi);
-		if (phi->count == phi->nb_m_eat && phi->nb_philo != 1)
+		if (((phi->count == phi->nb_m_eat) && (phi->nb_philo != 1)) || check_death(phi) == 1)
 		{
 			phi->compteur[0]++;
 			return NULL;
