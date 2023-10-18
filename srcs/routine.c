@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:56:57 by bloisel           #+#    #+#             */
-/*   Updated: 2023/10/18 03:33:41 by bloisel          ###   ########.fr       */
+/*   Updated: 2023/10/18 04:24:16 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ void *thread_routine(void *philo_struct)
 	while (check_death(phi) == 0)
 	{
 		fork_test(phi);
-		is_sleeping(phi);
 		if (phi->count == phi->nb_m_eat && phi->nb_philo != 1)
 		{
 			phi->compteur[0]++;
 			return NULL;
 		}
+		is_sleeping(phi);
 	}
 	return NULL;
 }
