@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:41:03 by bloisel           #+#    #+#             */
-/*   Updated: 2023/10/18 03:44:31 by bloisel          ###   ########.fr       */
+/*   Updated: 2023/10/18 04:02:58 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	init_struct(info, argv);
 	init_philo(info);
 	init_thread(info);
-	// if (after_routine(info) != 0)
+	// if (after_routine(info) == 1)
 	// 	return (1);
 	if (free_resources(info) != 0)
 		return (1);
