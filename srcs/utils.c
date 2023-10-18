@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:40:54 by bloisel           #+#    #+#             */
-/*   Updated: 2023/10/18 03:24:20 by bloisel          ###   ########.fr       */
+/*   Updated: 2023/10/18 05:33:56 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_usleep(long long milis , t_philo *info)
 	time = timeval() * 1000;
 	while (1)
 	{
-		if (check_death(info) == 1)
+		if (check_end(info) == 1)
 			break ;
 		usleep(50);
 		if (timeval() * 1000 - time >= milis)
@@ -49,7 +49,7 @@ int	ft_atoi_s(char *str)
 	return (res);
 }
 
-int	check_ar(char **argv)
+int	checkar(char **argv)
 {
 	int	i;
 	int	j;

@@ -6,11 +6,11 @@
 #    By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/27 18:33:37 by bloisel           #+#    #+#              #
-#    Updated: 2023/10/18 03:29:39 by bloisel          ###   ########.fr        #
+#    Updated: 2023/10/18 05:40:07 by bloisel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Philosopher
+NAME = philo
 
 FLAGS = -Wall -Werror -Wextra
 
@@ -24,7 +24,6 @@ SRCS = srcs/main.c \
 			srcs/init_struct.c \
 			srcs/routine.c \
 			srcs/free.c \
-			srcs/after_routine.c \
 			srcs/init_thread.c \
 			srcs/utils.c 
 

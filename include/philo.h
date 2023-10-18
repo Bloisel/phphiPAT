@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:35:20 by bloisel           #+#    #+#             */
-/*   Updated: 2023/10/18 03:29:27 by bloisel          ###   ########.fr       */
+/*   Updated: 2023/10/18 05:31:34 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void	init_struct(t_inf *info, char **argv);
 void *thread_routine(void *philo_struct);
 void init_thread(t_inf *info);
 int	ft_atoi_s(char *str);
-int	check_ar(char **argv);
+int	checkar(char **argv);
 void init_thread(t_inf *info);
-int check_death(t_philo *data);
+int check_end(t_philo *data);
 void	print_val(char *str, t_philo *info);
 int	free_resources(t_inf *inf);
 int after_routine(t_inf *info);
