@@ -3,6 +3,7 @@
 
 int	free_resources(t_inf *inf)
 {
+	printf("ok je suis dans free\n");
 	int	i;
 	
 	i = -1;

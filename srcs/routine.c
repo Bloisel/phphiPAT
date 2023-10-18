@@ -6,7 +6,7 @@
 /*   By: bloisel <bloisel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:56:57 by bloisel           #+#    #+#             */
-/*   Updated: 2023/10/18 03:05:18 by bloisel          ###   ########.fr       */
+/*   Updated: 2023/10/18 03:33:41 by bloisel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 int check_death(t_philo *data)
 {
-		// mutex glob ?
+		pthread_mutex_lock(&data->glob[0]);	
 		if (data->stop[0] == 0)
-			return (0);
-		else
-			return (1);
+		{
+				pthread_mutex_unlock(&data->glob[0]);
+				return (0);
+		}
+		pthread_mutex_unlock(&data->glob[0]);	
+		return (1);
 }
 
 void *is_sleeping(t_philo *info)
@@ -73,14 +76,13 @@ void *thread_routine(void *philo_struct)
 		ft_usleep (phi->time_to_eat * 1000 , phi);
 	while (check_death(phi) == 0)
 	{
-	fork_test(phi);
-	is_sleeping(phi);
-	if (phi->count == phi->nb_m_eat && phi->nb_philo != 1)
-	{
-		phi->compteur[0]++;
-		printf("compteur %d\n", phi->compteur[0]);
-		return NULL;
-	}
+		fork_test(phi);
+		is_sleeping(phi);
+		if (phi->count == phi->nb_m_eat && phi->nb_philo != 1)
+		{
+			phi->compteur[0]++;
+			return NULL;
+		}
 	}
 	return NULL;
 }
